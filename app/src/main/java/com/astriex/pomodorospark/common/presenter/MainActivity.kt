@@ -16,6 +16,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.astriex.pomodorospark.R
 import com.astriex.pomodorospark.common.presenter.util.Screen
 import com.astriex.pomodorospark.common.presenter.util.items
 import com.astriex.pomodorospark.feature_rewards.presenter.RewardsScreen
@@ -37,6 +38,11 @@ class MainActivity : ComponentActivity() {
 private fun ScreenContent() {
     val navController = rememberNavController()
     Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text(text = stringResource(id = R.string.app_name)) }
+            )
+        },
         bottomBar = {
             BottomNavigation {
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
