@@ -40,13 +40,11 @@ fun RewardItem(
             Column(modifier = Modifier.fillMaxWidth()) {
                 Text(
                     text = reward.title,
-
-
                     fontWeight = FontWeight.Bold,
                     style = MaterialTheme.typography.h6
                 )
                 Text(
-                    text = reward.chanceInPercent.toString(),
+                    text = "${reward.chanceInPercent.toString()}%",
                     color = Color.Gray
                 )
             }

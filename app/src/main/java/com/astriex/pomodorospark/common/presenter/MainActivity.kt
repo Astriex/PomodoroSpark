@@ -16,13 +16,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.astriex.pomodorospark.R
 import com.astriex.pomodorospark.common.presenter.util.Screen
 import com.astriex.pomodorospark.common.presenter.util.items
 import com.astriex.pomodorospark.feature_rewards.presenter.RewardsScreen
 import com.astriex.pomodorospark.feature_timer.presenter.TimerScreen
 import com.astriex.pomodorospark.ui.theme.PomodoroSparkTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,11 +39,6 @@ class MainActivity : ComponentActivity() {
 private fun ScreenContent() {
     val navController = rememberNavController()
     Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text(text = stringResource(id = R.string.app_name)) }
-            )
-        },
         bottomBar = {
             BottomNavigation {
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
