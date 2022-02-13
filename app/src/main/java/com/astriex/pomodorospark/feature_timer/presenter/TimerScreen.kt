@@ -15,6 +15,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.astriex.pomodorospark.R
+import com.astriex.pomodorospark.common.presenter.composables.CustomTopAppBar
 import com.astriex.pomodorospark.ui.theme.PomodoroSparkTheme
 
 @Composable
@@ -26,9 +27,7 @@ fun TimerScreen() {
 private fun ScreenContent() {
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = { Text(text = stringResource(id = R.string.timer)) }
-            )
+            CustomTopAppBar(title = stringResource(id = R.string.timer))
         },
         floatingActionButton = {
             FloatingActionButton(
