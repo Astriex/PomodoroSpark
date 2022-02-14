@@ -12,7 +12,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.astriex.pomodorospark.feature_rewards.domain.models.Reward
+import com.astriex.pomodorospark.feature_rewards.domain.model.Reward
 
 @Composable
 fun RewardsList(dummyRewards: List<Reward>) {
@@ -25,7 +25,11 @@ fun RewardsList(dummyRewards: List<Reward>) {
             .padding(horizontal = 4.dp),
         contentAlignment = Alignment.Center
     ) {
-        LazyColumn(state = listState, contentPadding = PaddingValues(bottom = 16.dp)) {
+        LazyColumn(
+            modifier = Modifier.fillMaxSize(),
+            state = listState,
+            contentPadding = PaddingValues(bottom = 16.dp)
+        ) {
             items(dummyRewards) { reward ->
                 RewardItem(reward = reward)
             }

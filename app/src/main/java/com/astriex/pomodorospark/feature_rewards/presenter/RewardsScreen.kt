@@ -6,9 +6,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.LocalCarWash
-import androidx.compose.material.icons.filled.LocalFireDepartment
-import androidx.compose.material.icons.filled.Star
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
@@ -18,14 +15,15 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.astriex.pomodorospark.R
 import com.astriex.pomodorospark.common.presenter.composables.CustomTopAppBar
-import com.astriex.pomodorospark.feature_rewards.domain.models.Reward
+import com.astriex.pomodorospark.feature_rewards.data.local.util.IconKeys
+import com.astriex.pomodorospark.feature_rewards.domain.model.Reward
 import com.astriex.pomodorospark.feature_rewards.presenter.composables.RewardsList
 import com.astriex.pomodorospark.ui.theme.PomodoroSparkTheme
 
 @Composable
 fun RewardsScreen(viewModel: RewardsViewModel = hiltViewModel()) {
-    val dummyRewards = viewModel.dummyRewards.collectAsState(emptyList())
-    ScreenContent(dummyRewards.value)
+    val rewards = viewModel.rewards.collectAsState(initial = emptyList<Reward>())
+    ScreenContent(rewards.value)
 }
 
 @Composable
@@ -58,9 +56,9 @@ private fun ScreenContentPreview() {
         Surface {
             ScreenContent(
                 listOf(
-                    Reward(Icons.Default.Star, "Reward 1", 1),
-                    Reward(Icons.Default.LocalCarWash, "Reward 2", 5),
-                    Reward(Icons.Default.LocalFireDepartment, "Reward 3", 50)
+                    Reward(iconKey = IconKeys.CAKE, title = "CAKE", chanceInPercent = 1),
+                    Reward(iconKey = IconKeys.BATHTUB, title = "BATHTUB", chanceInPercent = 5),
+                    Reward(iconKey = IconKeys.MOVIE, title = "MOVIE", chanceInPercent = 50)
                 )
             )
         }
