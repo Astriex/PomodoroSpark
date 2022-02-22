@@ -9,12 +9,14 @@ data class RewardEntity(
     val iconKey: String,
     val title: String,
     val chanceInPercent: Int,
+    val isUnlocked: Boolean = false,
     @PrimaryKey(autoGenerate = true) val id: Long = 0
 ) {
 
     fun toReward(): Reward = Reward(
         iconKey = iconKey,
         title = title,
-        chanceInPercent = chanceInPercent
+        chanceInPercent = chanceInPercent,
+        isUnlocked = isUnlocked
     )
 }

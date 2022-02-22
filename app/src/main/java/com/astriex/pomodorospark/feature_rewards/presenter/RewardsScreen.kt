@@ -3,7 +3,10 @@ package com.astriex.pomodorospark.feature_rewards.presenter
 import android.content.res.Configuration.UI_MODE_NIGHT_NO
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.*
+import androidx.compose.material.FloatingActionButton
+import androidx.compose.material.Icon
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Surface
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
@@ -56,9 +59,24 @@ private fun ScreenContentPreview() {
         Surface {
             ScreenContent(
                 listOf(
-                    Reward(iconKey = IconKeys.CAKE, title = "CAKE", chanceInPercent = 1),
-                    Reward(iconKey = IconKeys.BATHTUB, title = "BATHTUB", chanceInPercent = 5),
-                    Reward(iconKey = IconKeys.MOVIE, title = "MOVIE", chanceInPercent = 50)
+                    Reward(
+                        iconKey = IconKeys.CAKE,
+                        title = "CAKE",
+                        chanceInPercent = 1,
+                        isUnlocked = false
+                    ),
+                    Reward(
+                        iconKey = IconKeys.BATHTUB,
+                        title = "BATHTUB",
+                        chanceInPercent = 5,
+                        isUnlocked = false
+                    ),
+                    Reward(
+                        iconKey = IconKeys.MOVIE,
+                        title = "MOVIE",
+                        chanceInPercent = 50,
+                        isUnlocked = false
+                    )
                 )
             )
         }

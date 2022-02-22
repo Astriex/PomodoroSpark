@@ -59,7 +59,7 @@ fun RewardItem(
 private fun RewardItemPreview() {
     PomodoroSparkTheme {
         Surface {
-            RewardItem(Reward(iconKey = "Key", title = "Title", 10))
+            RewardItem(Reward(iconKey = "Key", title = "Title", 10, isUnlocked = false))
         }
     }
 }
