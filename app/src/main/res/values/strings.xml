@@ -5,4 +5,8 @@
     <string name="add">Add</string>
     <string name="scroll_to_top">Scroll to top</string>
     <string name="chance">Chance</string>
+    <string name="edit_reward">Edit reward</string>
+    <string name="add_reward">Add reward</string>
+    <string name="save_reward">Save reward</string>
+    <string name="reward_name">Reward name</string>
 </resources>

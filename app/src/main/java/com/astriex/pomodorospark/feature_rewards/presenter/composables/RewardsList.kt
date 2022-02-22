@@ -19,12 +19,7 @@ fun RewardsList(dummyRewards: List<Reward>) {
     val listState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(horizontal = 4.dp),
-        contentAlignment = Alignment.Center
-    ) {
+    Box {
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
             state = listState,

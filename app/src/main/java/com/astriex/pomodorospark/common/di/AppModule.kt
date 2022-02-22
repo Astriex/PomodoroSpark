@@ -1,5 +1,6 @@
 package com.astriex.pomodorospark.common.di
 
+import android.app.Application
 import android.content.Context
 import androidx.room.Room
 import com.astriex.pomodorospark.common.data.local.PSDatabase
@@ -24,7 +25,7 @@ class AppModule {
     @Provides
     @Singleton
     fun provideDatabase(
-        @ApplicationContext app: Context,
+        app: Application,
         callback: PSDatabase.PSDBCallback
     ): PSDatabase =
         Room.databaseBuilder(app, PSDatabase::class.java, "pomodoroSparkDB").addCallback(callback)

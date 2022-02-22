@@ -7,8 +7,6 @@ import com.astriex.pomodorospark.common.di.ApplicationScope
 import com.astriex.pomodorospark.feature_rewards.data.local.RewardDao
 import com.astriex.pomodorospark.feature_rewards.data.local.entity.RewardEntity
 import com.astriex.pomodorospark.feature_rewards.data.local.util.IconKeys
-import com.astriex.pomodorospark.feature_rewards.data.local.util.rewardIcons
-import com.astriex.pomodorospark.feature_rewards.domain.model.Reward
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
