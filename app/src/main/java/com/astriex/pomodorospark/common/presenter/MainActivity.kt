@@ -22,6 +22,7 @@ import androidx.navigation.compose.rememberNavController
 import com.astriex.pomodorospark.R
 import com.astriex.pomodorospark.common.presenter.util.Screen
 import com.astriex.pomodorospark.common.presenter.util.items
+import com.astriex.pomodorospark.feature_rewards.presenter.AddEditRewardScreen
 import com.astriex.pomodorospark.feature_rewards.presenter.RewardsScreen
 import com.astriex.pomodorospark.feature_timer.presenter.TimerScreen
 import com.astriex.pomodorospark.ui.theme.PomodoroSparkTheme
@@ -33,7 +34,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             PomodoroSparkTheme {
-                ScreenContent()
+                AddEditRewardScreen()
             }
         }
     }
