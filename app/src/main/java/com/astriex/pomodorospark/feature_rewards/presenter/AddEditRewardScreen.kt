@@ -58,8 +58,8 @@ fun ScreenContent(
                 )
             }
         }
-    ) {
-        Column(modifier = Modifier.padding(16.dp)) {
+    ) { innerPadding ->
+        Column(modifier = Modifier.padding(innerPadding)) {
             TextField(
                 value = rewardNameInput,
                 onValueChange = onRewardNameInputChange,

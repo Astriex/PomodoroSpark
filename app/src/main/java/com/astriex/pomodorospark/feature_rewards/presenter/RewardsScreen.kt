@@ -1,5 +1,6 @@
 package com.astriex.pomodorospark.feature_rewards.presenter
 
+import android.annotation.SuppressLint
 import android.content.res.Configuration.UI_MODE_NIGHT_NO
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.layout.padding
@@ -29,6 +30,7 @@ fun RewardsScreen(viewModel: RewardsViewModel = hiltViewModel()) {
     ScreenContent(rewards.value)
 }
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 private fun ScreenContent(dummyRewards: List<Reward>) {
     Scaffold(
