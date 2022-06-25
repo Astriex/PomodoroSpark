@@ -36,7 +36,7 @@ fun AddEditRewardScreen(viewModel: AddEditRewardViewModel = hiltViewModel()) {
 @Composable
 fun ScreenContent(
     isEditMode: Boolean,
-    rewardNameInput: String?,
+    rewardNameInput: String,
     chanceInPercentInput: Int,
     onRewardNameInputChange: (input: String) -> Unit,
     onChanceInputChange: (input: Int) -> Unit
@@ -59,9 +59,16 @@ fun ScreenContent(
             }
         }
     ) { innerPadding ->
-        Column(modifier = Modifier.padding(innerPadding)) {
+        Column(
+            modifier = Modifier.padding(
+                start = 16.dp,
+                end = 16.dp,
+                top = 16.dp,
+                bottom = innerPadding.calculateBottomPadding()
+            )
+        ) {
             TextField(
-                value = rewardNameInput ?: "",
+                value = rewardNameInput,
                 onValueChange = onRewardNameInputChange,
                 modifier = Modifier.fillMaxWidth(),
                 label = {
@@ -70,18 +77,13 @@ fun ScreenContent(
                 singleLine = true
             )
             Spacer(modifier = Modifier.height(16.dp))
-            Text(text = stringResource(id = R.string.chance))
+            Text(text = stringResource(id = R.string.chance) + ": ${chanceInPercentInput}%")
             Spacer(modifier = Modifier.height(16.dp))
             Slider(
                 value = chanceInPercentInput.toFloat() / 100,
                 onValueChange = { chanceAsFloat ->
                     onChanceInputChange((chanceAsFloat * 100).toInt())
                 }
-            )
-            Text(
-                text = "${chanceInPercentInput}%",
-                modifier = Modifier.fillMaxWidth(),
-                textAlign = TextAlign.Center
             )
         }
     }
