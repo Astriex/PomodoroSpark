@@ -17,6 +17,7 @@ import com.astriex.pomodorospark.feature_rewards.data.local.util.rewardIcons
 import com.astriex.pomodorospark.feature_rewards.domain.model.Reward
 import com.astriex.pomodorospark.ui.theme.PomodoroSparkTheme
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun RewardItem(
     reward: Reward,
