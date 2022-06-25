@@ -12,10 +12,11 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.astriex.pomodorospark.feature_rewards.domain.model.Reward
 
 @Composable
-fun RewardsList(dummyRewards: List<Reward>) {
+fun RewardsList(navController: NavController, dummyRewards: List<Reward>) {
     val listState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
 

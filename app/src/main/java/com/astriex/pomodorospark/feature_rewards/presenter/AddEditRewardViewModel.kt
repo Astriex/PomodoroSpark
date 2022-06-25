@@ -27,6 +27,7 @@ class AddEditRewardViewModel @Inject constructor(
     fun onChanceInPercentInputChange(input: Int) {
         _chanceInPercentInput.value = input
     }
+
 }
 
 const val ARG_REWARD_ID = "ARG_REWARD_ID"

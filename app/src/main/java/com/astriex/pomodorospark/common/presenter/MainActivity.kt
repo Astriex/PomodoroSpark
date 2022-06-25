@@ -20,7 +20,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.astriex.pomodorospark.R
-import com.astriex.pomodorospark.common.presenter.util.Screen
+import com.astriex.pomodorospark.common.presenter.util.BottomNavDestinations
+import com.astriex.pomodorospark.common.presenter.util.FullScreenDestinations
 import com.astriex.pomodorospark.common.presenter.util.items
 import com.astriex.pomodorospark.feature_rewards.presenter.AddEditRewardScreen
 import com.astriex.pomodorospark.feature_rewards.presenter.RewardsScreen
@@ -34,7 +35,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             PomodoroSparkTheme {
-                AddEditRewardScreen()
+                ScreenContent()
             }
         }
     }
@@ -70,29 +71,21 @@ private fun ScreenContent() {
                         })
                 }
             }
-        },
-        floatingActionButton = {
-            FloatingActionButton(
-                onClick = { /*TODO*/ },
-                modifier = Modifier.padding(8.dp)
-            ) {
-                Icon(
-                    imageVector = Icons.Default.Add,
-                    contentDescription = stringResource(R.string.add)
-                )
-            }
         }
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = Screen.TimerScreen.route,
+            startDestination = FullScreenDestinations.AddEditRewardScreen.route,
             modifier = Modifier.padding(innerPadding)
         ) {
-            composable(Screen.TimerScreen.route) {
-                TimerScreen()
+            composable(BottomNavDestinations.TimerScreen.route) {
+                TimerScreen(navController)
             }
-            composable(Screen.RewardsScreen.route) {
-                RewardsScreen()
+            composable(BottomNavDestinations.RewardsScreen.route) {
+                RewardsScreen(navController)
+            }
+            composable(FullScreenDestinations.AddEditRewardScreen.route) {
+                AddEditRewardScreen(navController)
             }
         }
     }

@@ -17,29 +17,42 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.astriex.pomodorospark.R
 import com.astriex.pomodorospark.common.presenter.composables.CustomTopAppBar
+import com.astriex.pomodorospark.common.presenter.util.FullScreenDestinations
 import com.astriex.pomodorospark.feature_rewards.data.local.util.IconKeys
 import com.astriex.pomodorospark.feature_rewards.domain.model.Reward
 import com.astriex.pomodorospark.feature_rewards.presenter.composables.RewardsList
 import com.astriex.pomodorospark.ui.theme.PomodoroSparkTheme
 
 @Composable
-fun RewardsScreen(viewModel: RewardsViewModel = hiltViewModel()) {
-    val rewards = viewModel.rewards.collectAsState(initial = emptyList<Reward>())
-    ScreenContent(rewards.value)
+fun RewardsScreen(navController: NavController, viewModel: RewardsViewModel = hiltViewModel()) {
+    val rewards = viewModel.rewards.collectAsState(initial = emptyList())
+    ScreenContent(
+        navController = navController,
+        onAddRewardClicked = {
+            navController.navigate(FullScreenDestinations.AddEditRewardScreen.route)
+        },
+        dummyRewards = rewards.value
+    )
 }
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-private fun ScreenContent(dummyRewards: List<Reward>) {
+private fun ScreenContent(
+    navController: NavController,
+    onAddRewardClicked: () -> Unit,
+    dummyRewards: List<Reward>
+) {
     Scaffold(
         topBar = {
             CustomTopAppBar(title = stringResource(id = R.string.rewards))
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { /*TODO*/ },
+                onClick = onAddRewardClicked,
                 modifier = Modifier.padding(8.dp)
             ) {
                 Icon(
@@ -49,7 +62,7 @@ private fun ScreenContent(dummyRewards: List<Reward>) {
             }
         }
     ) {
-        RewardsList(dummyRewards)
+        RewardsList(navController, dummyRewards)
     }
 }
 
@@ -60,7 +73,9 @@ private fun ScreenContentPreview() {
     PomodoroSparkTheme {
         Surface {
             ScreenContent(
-                listOf(
+                navController = rememberNavController(),
+                onAddRewardClicked = {},
+                dummyRewards = listOf(
                     Reward(
                         iconKey = IconKeys.CAKE,
                         title = "CAKE",
