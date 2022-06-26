@@ -9,4 +9,5 @@
     <string name="add_reward">Add reward</string>
     <string name="save_reward">Save reward</string>
     <string name="reward_name">Reward name</string>
+    <string name="close">Close</string>
 </resources>

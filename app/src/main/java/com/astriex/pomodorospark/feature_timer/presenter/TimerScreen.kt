@@ -17,8 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.astriex.pomodorospark.R
-import com.astriex.pomodorospark.common.presenter.composables.CustomTopAppBar
-import com.astriex.pomodorospark.common.presenter.util.FullScreenDestinations
+import com.astriex.pomodorospark.common.presenter.composables.DefaultTopAppBar
 import com.astriex.pomodorospark.ui.theme.PomodoroSparkTheme
 
 @Composable
@@ -30,7 +29,7 @@ fun TimerScreen(navController: NavController) {
 private fun ScreenContent(navController: NavController) {
     Scaffold(
         topBar = {
-            CustomTopAppBar(title = stringResource(id = R.string.timer))
+            DefaultTopAppBar(title = "Timer")
         },
         floatingActionButton = {
             FloatingActionButton(

@@ -4,10 +4,7 @@ import android.annotation.SuppressLint
 import android.content.res.Configuration.UI_MODE_NIGHT_NO
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.FloatingActionButton
-import androidx.compose.material.Icon
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Surface
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
@@ -20,7 +17,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.astriex.pomodorospark.R
-import com.astriex.pomodorospark.common.presenter.composables.CustomTopAppBar
+import com.astriex.pomodorospark.common.presenter.composables.DefaultTopAppBar
 import com.astriex.pomodorospark.common.presenter.util.FullScreenDestinations
 import com.astriex.pomodorospark.feature_rewards.data.local.util.IconKeys
 import com.astriex.pomodorospark.feature_rewards.domain.model.Reward
@@ -48,7 +45,7 @@ private fun ScreenContent(
 ) {
     Scaffold(
         topBar = {
-            CustomTopAppBar(title = stringResource(id = R.string.rewards))
+            DefaultTopAppBar(title = "Rewards")
         },
         floatingActionButton = {
             FloatingActionButton(

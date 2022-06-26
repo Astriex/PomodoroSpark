@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 
 
 @Composable
-fun CustomTopAppBar(title: String) {
+fun DefaultTopAppBar(title: String) {
     TopAppBar(
         title = { Text(text = title) }
     )

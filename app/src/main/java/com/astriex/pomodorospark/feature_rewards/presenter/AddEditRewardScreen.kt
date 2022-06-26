@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.astriex.pomodorospark.R
-import com.astriex.pomodorospark.common.presenter.composables.CustomTopAppBar
+import com.astriex.pomodorospark.feature_rewards.presenter.composables.AddEditTopAppBar
 import com.astriex.pomodorospark.ui.theme.PomodoroSparkTheme
 
 @Composable
@@ -32,7 +32,9 @@ fun AddEditRewardScreen(
         rewardNameInput = rewardNameInput,
         chanceInPercentInput = chanceInPercentInput,
         onRewardNameInputChange = viewModel::onRewardNameInputChange,
-        onChanceInputChange = viewModel::onChanceInPercentInputChange
+        onChanceInputChange = viewModel::onChanceInPercentInputChange,
+        onCloseClicked = { navController.popBackStack() },
+        onSaveClicked = viewModel::onSaveClicked
     )
 }
 
@@ -42,17 +44,19 @@ fun ScreenContent(
     rewardNameInput: String,
     chanceInPercentInput: Int,
     onRewardNameInputChange: (input: String) -> Unit,
-    onChanceInputChange: (input: Int) -> Unit
+    onChanceInputChange: (input: Int) -> Unit,
+    onCloseClicked: () -> Unit,
+    onSaveClicked: () -> Unit
 ) {
     Scaffold(
         topBar = {
             val appBarTitle =
                 stringResource(id = (if (isEditMode) R.string.edit_reward else R.string.add_reward))
-            CustomTopAppBar(title = appBarTitle)
+            AddEditTopAppBar(title = appBarTitle, onCloseClicked)
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { /*TODO*/ },
+                onClick = onSaveClicked,
                 modifier = Modifier.padding(8.dp)
             ) {
                 Icon(
@@ -102,6 +106,8 @@ private fun ScreenContentPreview() {
                 isEditMode = false,
                 rewardNameInput = "example reward",
                 chanceInPercentInput = 10,
+                {},
+                {},
                 {},
                 {}
             )
