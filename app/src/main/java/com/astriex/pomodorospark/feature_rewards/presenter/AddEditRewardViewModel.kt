@@ -8,6 +8,8 @@ import com.astriex.pomodorospark.feature_rewards.data.local.RewardDao
 import com.astriex.pomodorospark.feature_rewards.data.local.util.IconKeys
 import com.astriex.pomodorospark.feature_rewards.domain.model.Reward
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -16,6 +18,13 @@ class AddEditRewardViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     private val rewardDao: RewardDao
 ) : ViewModel() {
+
+    sealed class AddEditRewardEvent {
+        object RewardCreated: AddEditRewardEvent()
+    }
+    private val eventChannel = Channel<AddEditRewardEvent>()
+    val events = eventChannel.receiveAsFlow()
+
     private val _rewardNameInput = savedStateHandle.getLiveData<String>("rewardNameLiveData", "")
     val rewardNameInput: LiveData<String> = _rewardNameInput
 
@@ -68,6 +77,7 @@ class AddEditRewardViewModel @Inject constructor(
 
     private suspend fun createReward(reward: Reward) {
         rewardDao.insertReward(reward.toRewardEntity())
+        eventChannel.send(AddEditRewardEvent.RewardCreated)
     }
 
 }

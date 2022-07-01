@@ -6,6 +6,8 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
@@ -26,6 +28,14 @@ fun AddEditRewardScreen(
     val rewardNameInput by viewModel.rewardNameInput.observeAsState("")
     val chanceInPercentInput by viewModel.chanceInPercentInput.observeAsState(10)
     val isEdit: Boolean = viewModel.isEditMode
+
+    LaunchedEffect(Unit) {
+        viewModel.events.collect { event ->
+            when(event) {
+                is AddEditRewardViewModel.AddEditRewardEvent.RewardCreated -> navController.popBackStack()
+            }
+        }
+    }
 
     ScreenContent(
         isEditMode = isEdit,
