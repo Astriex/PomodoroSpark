@@ -7,7 +7,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
@@ -17,6 +16,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.astriex.pomodorospark.R
+import com.astriex.pomodorospark.common.presenter.composables.PSIconButton
+import com.astriex.pomodorospark.feature_rewards.data.local.util.defaultRewardIcon
 import com.astriex.pomodorospark.feature_rewards.presenter.composables.AddEditTopAppBar
 import com.astriex.pomodorospark.ui.theme.PomodoroSparkTheme
 
@@ -31,7 +32,7 @@ fun AddEditRewardScreen(
 
     LaunchedEffect(Unit) {
         viewModel.events.collect { event ->
-            when(event) {
+            when (event) {
                 is AddEditRewardViewModel.AddEditRewardEvent.RewardCreated -> navController.popBackStack()
             }
         }
@@ -43,6 +44,7 @@ fun AddEditRewardScreen(
         chanceInPercentInput = chanceInPercentInput,
         onRewardNameInputChange = viewModel::onRewardNameInputChange,
         onChanceInputChange = viewModel::onChanceInPercentInputChange,
+        onRewardIconButtonClicked = viewModel::onRewardIconButtonClicked,
         onCloseClicked = { navController.popBackStack() },
         onSaveClicked = viewModel::onSaveClicked
     )
@@ -55,6 +57,7 @@ fun ScreenContent(
     chanceInPercentInput: Int,
     onRewardNameInputChange: (input: String) -> Unit,
     onChanceInputChange: (input: Int) -> Unit,
+    onRewardIconButtonClicked: () -> Unit,
     onCloseClicked: () -> Unit,
     onSaveClicked: () -> Unit
 ) {
@@ -102,6 +105,16 @@ fun ScreenContent(
                     onChanceInputChange((chanceAsFloat * 100).toInt())
                 }
             )
+            Spacer(modifier = Modifier.height(16.dp))
+            PSIconButton(onClick = {}, modifier = Modifier.size(64.dp)) {
+                Icon(
+                    imageVector = defaultRewardIcon,
+                    contentDescription = stringResource(id = R.string.select_icon),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(8.dp)
+                )
+            }
         }
     }
 }
@@ -116,6 +129,7 @@ private fun ScreenContentPreview() {
                 isEditMode = false,
                 rewardNameInput = "example reward",
                 chanceInPercentInput = 10,
+                {},
                 {},
                 {},
                 {},

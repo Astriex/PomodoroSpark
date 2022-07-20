@@ -12,7 +12,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.astriex.pomodorospark.R
-import com.astriex.pomodorospark.feature_rewards.data.local.util.defaultIcon
+import com.astriex.pomodorospark.feature_rewards.data.local.util.defaultRewardIcon
 import com.astriex.pomodorospark.feature_rewards.data.local.util.rewardIcons
 import com.astriex.pomodorospark.feature_rewards.domain.model.Reward
 import com.astriex.pomodorospark.ui.theme.PomodoroSparkTheme
@@ -37,7 +37,7 @@ fun RewardItem(
                 modifier = Modifier
                     .padding(8.dp)
                     .size(64.dp),
-                imageVector = rewardIcons[reward.iconKey] ?: defaultIcon,
+                imageVector = rewardIcons[reward.iconKey] ?: defaultRewardIcon,
                 contentDescription = null
             )
             Column(modifier = Modifier.fillMaxWidth()) {

@@ -20,8 +20,9 @@ class AddEditRewardViewModel @Inject constructor(
 ) : ViewModel() {
 
     sealed class AddEditRewardEvent {
-        object RewardCreated: AddEditRewardEvent()
+        object RewardCreated : AddEditRewardEvent()
     }
+
     private val eventChannel = Channel<AddEditRewardEvent>()
     val events = eventChannel.receiveAsFlow()
 
@@ -36,12 +37,20 @@ class AddEditRewardViewModel @Inject constructor(
         savedStateHandle.getLiveData<Int>("chanceInPercentLiveData", 10)
     val chanceInPercentInput: LiveData<Int> = _chanceInPercentInput
 
+    private val _showRewardIconButtonSelection =
+        savedStateHandle.getLiveData<Boolean>("showRewardIconButtonSelection", false)
+    val showRewardIconButtonSelection: LiveData<Boolean> = _showRewardIconButtonSelection
+
     fun onRewardNameInputChange(input: String) {
         _rewardNameInput.value = input
     }
 
     fun onChanceInPercentInputChange(input: Int) {
         _chanceInPercentInput.value = input
+    }
+
+    fun onRewardIconButtonClicked() {
+        _showRewardIconButtonSelection.value = true
     }
 
     fun onSaveClicked() {

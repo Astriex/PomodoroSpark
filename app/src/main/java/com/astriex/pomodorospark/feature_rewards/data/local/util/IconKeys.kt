@@ -19,4 +19,4 @@ val rewardIcons = mapOf<String, ImageVector>(
     Pair(IconKeys.BATHTUB, Icons.Default.Bathtub),
     Pair(IconKeys.MOVIE, Icons.Default.Movie)
 )
-val defaultIcon = Icons.Default.Star
+val defaultRewardIcon = Icons.Default.Star
